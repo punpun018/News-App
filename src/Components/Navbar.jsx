@@ -1,4 +1,11 @@
-const Navbar = () => {
+import React, { useState } from "react";
+const Navbar = ({ handleSearchTerm }) => {
+    const [SearchItem, setSearchItem] = useState('');
+    const handleSearch = (e) => {
+        e.preventDefault();
+        console.log(SearchItem);
+        handleSearchTerm(SearchItem);
+    }
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div className="container-fluid">
@@ -29,8 +36,8 @@ const Navbar = () => {
                             <a className="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <form className="d-flex" role="search" onSubmit={handleSearch}>
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={SearchItem} onChange={(e) => setSearchItem(e.target.value)} />
                         <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
