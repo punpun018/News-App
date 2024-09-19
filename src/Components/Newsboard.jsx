@@ -10,7 +10,13 @@ const Newsboard = ({ searchTerm }) => {
         const fetchData = async () => {
             try {
                 let url = `https://newsapi.org/v2/everything?q=${searchTerm}&apiKey=${apiKey}`;
-                const response = await axios.get(url);
+                const response = await axios.get(url, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                });
                 console.log(response);
                 setArticles(response.data.articles);
             } catch (error) {
@@ -22,7 +28,8 @@ const Newsboard = ({ searchTerm }) => {
         if (searchTerm) {
             fetchData();
         }
-    }, [searchTerm]);  // Add searchTerm as a dependency
+    }, [searchTerm]);
+
 
     return (
         <div className='px-5 py-3'>
