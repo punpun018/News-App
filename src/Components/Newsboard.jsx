@@ -13,7 +13,7 @@ const Newsboard = ({ searchTerm }) => {
                 const response = await axios.get(url, {
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
+
                         'Access-Control-Allow-Origin': '*'
                     }
                 });
